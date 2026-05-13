@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://cdn.jsdelivr.net/gh/freebuisness/freebuisness.github.io@main/">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>john-aura</title>
+    <meta name="description" content="john-aura play games anytime.">
+    <style>
+        :root {
+            --primary: #1a6bff;
+            --primary-hover: #1558e6;
+            --primary-light: rgba(26, 107, 255, 0.1);
+            --accent: #0ea5e9;
+            --bg: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --surface: #ffffff;
+            --surface-hover: #f1f5f9;
+            --border: #e2e8f0;
+            --glass: rgba(255, 255, 255, 0.8);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --gradient-primary: linear-gradient(135deg, #1a6bff 0%, #7dd3fc 100%);
+            --aura-inner: rgba(26, 107, 255, 0.5);
+            --aura-outer: rgba(125, 211, 252, 0.25);
+        }
+
+        .dark-mode {
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --primary-light: rgba(59, 130, 246, 0.15);
+            --accent: #38bdf8;
+            --bg: #0f172a;
+            --bg-secondary: #1e293b;
+            --surface: #1e293b;
+            --surface-hover: #334155;
+            --border: #334155;
+            --glass: rgba(30, 41, 59, 0.8);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #7dd3fc 100%);
+            --aura-inner: rgba(59, 130, 246, 0.5);
+            --aura-outer: rgba(125, 211, 252, 0.25);
+        }
+
+        .purple-mode {
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --primary-light: rgba(139, 92, 246, 0.12);
+            --accent: #c084fc;
+            --bg: #0d0a1a;
+            --bg-secondary: #150f29;
+            --surface: #1a1333;
+            --surface-hover: #261d45;
+            --border: #2d2249;
+            --text: #f1f5f9;
+            --text-muted: #a78bcc;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+            --aura-inner: rgba(139, 92, 246, 0.55);
+            --aura-outer: rgba(192, 132, 252, 0.3);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header {
+            background: var(--gradient-primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(20px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .logo.john-aura {
+            position: relative;
+            z-index: 1;
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #ffffff 0%, var(--primary) 40%, var(--accent) 60%, #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textFlow 4s linear infinite;
+        }
+
+        @keyframes textFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .logo.john-aura::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 140%;
+            height: 280%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse, var(--aura-inner) 0%, transparent 65%);
+            opacity: 0.45;
+            filter: blur(18px);
+            z-index: -1;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: johnAuraPulse 3s ease-in-out infinite;
+        }
+        .logo.john-aura::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 350%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse, var(--aura-outer) 0%, transparent 55%);
+            opacity: 0.2;
+            filter: blur(30px);
+            z-index: -2;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: johnAuraPulse2 4.5s ease-in-out infinite;
+        }
+        @keyframes johnAuraPulse {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.55; transform: translate(-50%, -50%) scale(1.12); }
+        }
+        @keyframes johnAuraPulse2 {
+            0%, 100% { opacity: 0.18; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        .search-container {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            gap: 0.75rem;
+        }
+
+        #searchBar {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 0;
+            border-radius: var(--radius);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow);
+            max-width: 500px;
+        }
+        #searchBar:hover {
+            max-width: 700px;
+            background: var(--text);
+            box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-lg);
+            transform: translateY(-1px);
+            color: var(--glass);
+        }
+        #searchBar:focus {
+            max-width: 700px;
+            background: var(--text);
+            box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-lg);
+            transform: translateY(-1px);
+            color: var(--glass);
+        }
+        #searchBar::placeholder { color: var(--text-muted); }
+
+        select {
+            padding: 0.875rem 1rem;
+            border: 0;
+            border-radius: var(--radius);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            color: var(--text-muted);
+            font-size: 15px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s;
+            min-width: 130px;
+            box-shadow: var(--shadow);
+        }
+        select:hover {
+            background: var(--text);
+            color: var(--glass);
+            transform: translateY(-1px);
+        }
+
+        .control-buttons { display: flex; gap: 0.5rem; }
+        .control-buttons button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 0;
+            color: white;
+            cursor: pointer;
+            padding: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s;
+        }
+        .control-buttons button:hover { background: rgba(255, 255, 255, 0.2); }
+
+        main { margin: 0 auto; padding: 2rem 1rem; padding-bottom: 6rem; }
+        
+        #container, #featuredZones {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .zone-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .zone-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+        .zone-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+        .zone-item button {
+            background: transparent;
+            color: var(--text);
+            border: 0;
+            padding: 1rem;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+        }
+        .zone-item:hover button { color: var(--primary); }
+
+        /* Viewer */
+        #zoneViewer {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+        }
+        .zone-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #zoneFrame { flex-grow: 1; border: none; width: 100%; height: 100%; }
+
+        /* Browser/Proxy */
+        #browserInterface {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+        }
+        
+        #closeBrowserBtn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #333333;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s;
+            z-index: 2001;
+        }
+        #closeBrowserBtn:hover { 
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+            transform: scale(1.05);
+        }
+        
+        #browserFrame { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            background: #ffffff;
+            z-index: 1; 
+        }
+        
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; }
+        .footer-links a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .footer-links a:hover { text-decoration: underline; }
+
+        /* ===== SETTINGS PANEL ===== */
+        #settingsOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.25s ease;
+        }
+        #settingsOverlay.open { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .settings-panel {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            width: 95%;
+            max-width: 520px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .settings-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .settings-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .settings-close-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        .settings-close-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .settings-body { padding: 0; }
+
+        .settings-section {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .settings-section:last-child { border-bottom: none; }
+
+        .settings-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        /* Stealth feature card inside settings */
+        .stealth-card {
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(14, 165, 233, 0.05) 100%);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stealth-card::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .stealth-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .stealth-card-title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+        }
+
+        .stealth-card-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .stealth-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .stealth-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--text-muted);
+            opacity: 0.5;
+        }
+        .stealth-dot.active {
+            background: #22c55e;
+            opacity: 1;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+            animation: stealthPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes stealthPulse {
+            0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 16px rgba(34, 197, 94, 0.6); }
+        }
+
+        .stealth-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .stealth-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stealth-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .stealth-btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 20px var(--primary-light);
+        }
+        .stealth-btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--primary-light);
+        }
+        .stealth-btn-primary:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        .stealth-btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .stealth-btn-ghost:hover {
+            background: var(--surface-hover);
+            border-color: var(--text-muted);
+        }
+
+        /* Setting row */
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            gap: 12px;
+        }
+        .setting-row + .setting-row {
+            border-top: 1px solid var(--border);
+        }
+
+        .setting-row-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .setting-row-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .setting-row-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+        .setting-row-icon.green { background: var(--primary-light); color: var(--primary); }
+        .setting-row-icon.amber { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+
+        .setting-row-text h4 {
+            margin: 0;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+        .setting-row-text p {
+            margin: 2px 0 0;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Toggle switch */
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+        .toggle-track {
+            position: absolute;
+            inset: 0;
+            background: var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .toggle-track::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .toggle-switch input:checked + .toggle-track {
+            background: var(--primary);
+        }
+        .toggle-switch input:checked + .toggle-track::after {
+            transform: translateX(20px);
+        }
+        .toggle-switch input:focus-visible + .toggle-track {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Toast notifications */
+        #toastContainer {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            animation: toastSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 340px;
+            pointer-events: auto;
+        }
+        .toast.exit {
+            animation: toastExit 0.3s ease forwards;
+        }
+
+        .toast-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .toast-success .toast-icon { color: #22c55e; }
+        .toast-warning .toast-icon { color: #f59e0b; }
+        .toast-info .toast-icon { color: var(--primary); }
+
+        @keyframes toastSlide {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes toastExit {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(50px); }
+        }
+
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; }
+            #searchBar:hover { max-width: 100%; }
+            .settings-panel { width: 100%; max-width: 100%; max-height: 100vh; border-radius: 0; }
+            .settings-header { border-radius: 0; }
+            .stealth-actions { flex-direction: column; }
+            .stealth-btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <header>
+        <div class="header-content">
+            <div class="logo john-aura">john-aura</div>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Search..." oninput="filterZones()">
+                <select id="sortOptions" onchange="sortZones()">
+                    <option value="name">Name</option>
+                    <option value="id">Date</option>
+                </select>
+                <select id="filterOptions" onchange="filterZones2()">
+                    <option value="none">All</option>
+                    <option value="games">Games</option>
+                </select>
+            </div>
+            <div class="control-buttons">
+                <button title="Browser/Proxy" onclick="toggleBrowser()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <button title="Theme" onclick="purpleMode()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                </button>
+                <button title="Settings" onclick="toggleSettings()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="container"></div>
+    </main>
+
+    <!-- Game Viewer -->
+    <div id="zoneViewer">
+        <div class="zone-header">
+            <span id="zoneName">Game</span>
+            <button onclick="closeZone()" style="background:rgba(255,255,255,0.2); color:white; border:none; padding:5px 10px; cursor:pointer;">Close</button>
+        </div>
+        <iframe id="zoneFrame"></iframe>
+    </div>
+
+    <!-- Proxy Interface -->
+    <div id="browserInterface">
+        <button id="closeBrowserBtn" onclick="toggleBrowser()">✕</button>
+        <iframe id="browserFrame"></iframe>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settingsOverlay" onclick="if(event.target===this)toggleSettings()">
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    Settings
+                </h2>
+                <button class="settings-close-btn" onclick="toggleSettings()" aria-label="Close settings">&times;</button>
+            </div>
+            <div class="settings-body">
+                <!-- Stealth Mode Section -->
+                <div class="settings-section">
+                    <div class="settings-section-title">Stealth Mode</div>
+                    <div class="stealth-card">
+                        <div class="stealth-card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            Open in about:blank
+                        </div>
+                        <p class="stealth-card-desc">
+                            Launches this site inside an about:blank window. The browser tab will appear empty to anyone looking at it.
+                        </p>
+                        <div class="stealth-status" id="stealthStatus">
+                            <span class="stealth-dot" id="stealthDot"></span>
+                            <span id="stealthStatusText">No stealth window active</span>
+                        </div>
+                        <div class="stealth-actions">
+                            <button class="stealth-btn stealth-btn-primary" id="btnOpenStealth" onclick="openStealthWindow()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Open in about:blank
+                            </button>
+                            <button class="stealth-btn stealth-btn-ghost" id="btnCloseStealth" onclick="closeStealthWindow()" style="display:none;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
+                                Close Stealth Window
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Section -->
+                <div class="settings-section">
+                    <div class="settings-section-title">Privacy</div>
+                    <div class="setting-row">
+                        <div class="setting-row-left">
+                            <div class="setting-row-icon green">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            <div class="setting-row-text">
+                                <h4>Close Confirmation</h4>
+                                <p>Show "Leave site?" warning when closing the stealth window</p>
+                            </div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleCloseConfirm" checked>
+                            <span class="toggle-track"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <div class="setting-row-left">
+                            <div class="setting-row-icon amber">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </div>
+                            <div class="setting-row-text">
+                                <h4>Mask Tab Title</h4>
+                                <p>Set the stealth window title to "about:blank"</p>
+                            </div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleMaskTitle" checked>
+                            <span class="toggle-track"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" onclick="alert('Contact: admin@john-aura.com'); return false;">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        // --- CONFIGURATION ---
+        var PROXY_SERVICE_URL = "https://mhi.banglam.com/";
+        var ZONES_URL = "https://cdn.jsdelivr.net/gh/freebuisness/assets@main/zones.json";
+        var COVER_URL = "https://cdn.jsdelivr.net/gh/freebuisness/covers@main";
+        var HTML_URL = "https://cdn.jsdelivr.net/gh/freebuisness/html@main";
+        
+        var zones = [];
+        var stealthWin = null;
+
+        // Detect if we are running INSIDE the stealth iframe
+        var isInsideStealth = (window.parent && window.parent !== window);
+
+        // --- TOAST SYSTEM ---
+        function showToast(msg, type) {
+            type = type || 'info';
+            var container = document.getElementById('toastContainer');
+            if (!container) return;
+            var toast = document.createElement('div');
+            toast.className = 'toast toast-' + type;
+
+            var iconSvg = '';
+            if (type === 'success') {
+                iconSvg = '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
+            } else if (type === 'warning') {
+                iconSvg = '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
+            } else {
+                iconSvg = '<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
+            }
+
+            toast.innerHTML = iconSvg + '<span>' + msg + '</span>';
+            container.appendChild(toast);
+
+            setTimeout(function() {
+                toast.classList.add('exit');
+                toast.addEventListener('animationend', function() { toast.remove(); });
+            }, 3000);
+        }
+
+        // --- STEALTH WINDOW ---
+        function getStealthSettings() {
+            var toggleConfirm = document.getElementById('toggleCloseConfirm');
+            var toggleMask = document.getElementById('toggleMaskTitle');
+            return {
+                closeConfirm: toggleConfirm ? toggleConfirm.checked : true,
+                maskTitle: toggleMask ? toggleMask.checked : true
+            };
+        }
+
+        function updateStealthStatus() {
+            var dot = document.getElementById('stealthDot');
+            var text = document.getElementById('stealthStatusText');
+            var btnOpen = document.getElementById('btnOpenStealth');
+            var btnClose = document.getElementById('btnCloseStealth');
+
+            if (isInsideStealth) {
+                // We are inside the stealth iframe
+                if (dot) dot.className = 'stealth-dot active';
+                if (text) text.textContent = 'Stealth window is active';
+                if (btnOpen) btnOpen.style.display = 'none';
+                if (btnClose) btnClose.style.display = 'inline-flex';
+                return;
+            }
+
+            if (stealthWin && !stealthWin.closed) {
+                if (dot) dot.className = 'stealth-dot active';
+                if (text) text.textContent = 'Stealth window is active';
+                if (btnOpen) btnOpen.style.display = 'none';
+                if (btnClose) btnClose.style.display = 'inline-flex';
+            } else {
+                if (dot) dot.className = 'stealth-dot';
+                if (text) text.textContent = 'No stealth window active';
+                if (btnOpen) btnOpen.style.display = 'inline-flex';
+                if (btnClose) btnClose.style.display = 'none';
+                stealthWin = null;
+            }
+        }
+
+        function openStealthWindow() {
+            // If we're already inside a stealth iframe, don't nest
+            if (isInsideStealth) {
+                showToast('Already running in stealth mode', 'warning');
+                return;
+            }
+
+            if (stealthWin && !stealthWin.closed) {
+                showToast('Stealth window is already open', 'warning');
+                stealthWin.focus();
+                return;
+            }
+
+            var settings = getStealthSettings();
+            var title = settings.maskTitle ? 'about:blank' : 'john-aura';
+            var currentUrl = window.location.href;
+
+            var newWin = window.open('about:blank', '_blank');
+            if (!newWin) {
+                showToast('Popup blocked — allow popups for this site', 'warning');
+                return;
+            }
+
+            // Build the about:blank wrapper: an iframe holding the real site
+            // The beforeunload goes on the OUTER window (the about:blank one)
+            var closeConfirmScript = '';
+            if (settings.closeConfirm) {
+                closeConfirmScript = 'window.addEventListener("beforeunload",function(e){e.preventDefault();e.returnValue="";});';
+            }
+
+            // Listen for messages from the iframe to close this window
+            var msgListener = 'window.addEventListener("message",function(e){if(e.data==="closeStealthWindow"){window.close();}});';
+
+            var wrapperHTML = '<!DOCTYPE html><html><head><title>' + title + '</title>' +
+                '<scr' + 'ipt>' + closeConfirmScript + msgListener + '</scr' + 'ipt>' +
+                '<style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff;}iframe{width:100%;height:100%;border:none;}</style>' +
+                '</head><body><iframe src="' + currentUrl + '"></iframe></body></html>';
+
+            try {
+                newWin.document.open();
+                newWin.document.write(wrapperHTML);
+                newWin.document.close();
+
+                stealthWin = newWin;
+                updateStealthStatus();
+                showToast('Stealth window opened', 'success');
+
+                // Poll to detect when the window is closed
+                var pollId = setInterval(function() {
+                    if (stealthWin && stealthWin.closed) {
+                        clearInterval(pollId);
+                        updateStealthStatus();
+                        showToast('Stealth window closed', 'info');
+                    }
+                }, 600);
+            } catch (e) {
+                showToast('Failed to open stealth window: ' + e.message, 'warning');
+            }
+        }
+
+        function closeStealthWindow() {
+            // If we're inside the stealth iframe, ask the parent window to close
+            if (isInsideStealth) {
+                window.parent.postMessage('closeStealthWindow', '*');
+                return;
+            }
+            // If we're on the main page and have a reference to the stealth window
+            if (stealthWin && !stealthWin.closed) {
+                try {
+                    stealthWin.close();
+                } catch (e) { /* cross-origin */ }
+                updateStealthStatus();
+                showToast('Stealth window closed', 'info');
+            }
+        }
+
+        // --- SETTINGS TOGGLE ---
+        function toggleSettings() {
+            var overlay = document.getElementById('settingsOverlay');
+            if (!overlay) return;
+            if (overlay.classList.contains('open')) {
+                overlay.classList.remove('open');
+            } else {
+                overlay.classList.add('open');
+                updateStealthStatus();
+            }
+        }
+
+        // Toggle change feedback
+        document.querySelectorAll('.toggle-switch input').forEach(function(toggle) {
+            toggle.addEventListener('change', function() {
+                var row = this.closest('.setting-row');
+                if (!row) return;
+                var label = row.querySelector('.setting-row-text h4');
+                if (!label) return;
+                var state = this.checked ? 'enabled' : 'disabled';
+                showToast(label.textContent + ' ' + state, 'success');
+            });
+        });
+
+        // Keyboard: Escape closes settings
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                var overlay = document.getElementById('settingsOverlay');
+                if (overlay && overlay.classList.contains('open')) {
+                    overlay.classList.remove('open');
+                }
+            }
+        });
+
+        // --- ZONES LOGIC ---
+        async function listZones() {
+            try {
+                var res = await fetch(ZONES_URL + "?t=" + Date.now());
+                zones = await res.json();
+                displayZones(zones);
+            } catch (e) {
+                document.getElementById('container').innerHTML = "<p>Error loading zones. Check your internet connection.</p>";
+            }
+        }
+
+        function displayZones(zonesList) {
+            var container = document.getElementById('container');
+            container.innerHTML = "";
+            zonesList.forEach(function(zone) {
+                var div = document.createElement('div');
+                div.className = 'zone-item';
+                div.onclick = function() { openZone(zone); };
+                div.innerHTML = '<img src="' + zone.cover.replace("{COVER_URL}", COVER_URL) + '" loading="lazy" alt="' + zone.name + '"><button>' + zone.name + '</button>';
+                container.appendChild(div);
+            });
+        }
+
+        function filterZones() {
+            var q = document.getElementById('searchBar').value.toLowerCase();
+            var filtered = zones.filter(function(z) { return z.name.toLowerCase().includes(q); });
+            displayZones(filtered);
+        }
+        
+        function filterZones2() {
+            var type = document.getElementById('filterOptions').value;
+            if (type === 'none') displayZones(zones);
+            else displayZones(zones);
+        }
+
+        function sortZones() {
+            var method = document.getElementById('sortOptions').value;
+            if (method === 'name') zones.sort(function(a,b) { return a.name.localeCompare(b.name); });
+            else zones.sort(function(a,b) { return a.id - b.id; });
+            displayZones(zones);
+        }
+
+        function openZone(zone) {
+            document.getElementById('zoneViewer').style.display = 'flex';
+            document.getElementById('zoneName').innerText = zone.name;
+            var frame = document.getElementById('zoneFrame');
+            if (zone.url.startsWith("http")) {
+                frame.src = zone.url;
+            } else {
+                var url = zone.url.replace("{HTML_URL}", HTML_URL);
+                fetch(url).then(function(r) { return r.text(); }).then(function(html) {
+                    frame.srcdoc = html;
+                });
+            }
+        }
+
+        function closeZone() {
+            document.getElementById('zoneViewer').style.display = 'none';
+            document.getElementById('zoneFrame').src = 'about:blank';
+        }
+
+        // --- PROXY / BROWSER ---
+        function loadProxy() {
+            var frame = document.getElementById('browserFrame');
+            frame.removeAttribute('srcdoc');
+            frame.src = PROXY_SERVICE_URL;
+        }
+
+        function toggleBrowser() {
+            var b = document.getElementById('browserInterface');
+            var frame = document.getElementById('browserFrame');
+            
+            if (b.style.display === 'flex') {
+                b.style.display = 'none';
+                frame.src = 'about:blank';
+                frame.removeAttribute('srcdoc');
+            } else {
+                b.style.display = 'flex';
+                frame.src = 'about:blank';
+                frame.srcdoc = '<html><head><style>body{margin:0;background:#0f172a;color:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center}h1{font-size:4rem;background:linear-gradient(90deg,#ffffff 0%,#3b82f6 40%,#38bdf8 60%,#ffffff 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:tf 4s linear infinite;margin-bottom:10px}p{font-size:1.5rem;color:#94a3b8;margin-bottom:40px}button{padding:15px 40px;font-size:1.2rem;background:linear-gradient(135deg,#1a6bff 0%,#7dd3fc 100%);color:white;border:none;border-radius:12px;cursor:pointer;font-weight:bold;transition:0.3s}button:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(26,107,255,0.4)}@keyframes tf{0%{background-position:0% center}100%{background-position:200% center}}</style></head><body><h1>j.aura</h1><p>you can only type links ex: canvas.com (you cant search stuff or it will break)</p><button onclick="window.parent.loadProxy()">Start Browsing</button></body></html>';
+            }
+        }
+
+        // --- THEME ---
+        function purpleMode() {
+            document.body.classList.toggle('purple-mode');
+        }
+
+        // Initialize stealth status on load
+        updateStealthStatus();
+
+        listZones();
+    </script>
+</body>
+</html>
